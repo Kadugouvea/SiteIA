@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Produtora de audiovisual especializada em vídeos corporativos, campanhas e conteúdo para marcas." />
+    <title>NovaFrame Produções</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        :root {
+            --bg: #0d0d12;
+            --bg-soft: #171821;
+            --card: rgba(255, 255, 255, 0.04);
+            --card-strong: #1b1b25;
+            --primary: #ff5f6d;
+            --secondary: #ffc371;
+            --text: #f5f7fb;
+            --muted: #a7adbf;
+            --line: rgba(255,255,255,0.08);
+            --shadow: 0 20px 60px rgba(0,0,0,0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(255, 95, 109, 0.18), transparent 28%),
+                radial-gradient(circle at bottom right, rgba(255,195,113,0.12), transparent 22%),
+                var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(16px);
+            background: rgba(13, 13, 18, 0.72);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 78px;
+        }
+
+        .brand {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .brand span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            color: var(--muted);
+            font-size: 0.96rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: none;
+            border-radius: 999px;
+            padding: 0.95rem 1.6rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #ff7d60);
+            color: white;
+            box-shadow: 0 16px 38px rgba(255, 95, 109, 0.35);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .hero {
+            padding: 72px 0 48px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 52px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.5rem 0.9rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            color: var(--secondary);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            margin-top: 22px;
+            font-size: clamp(2.8rem, 6vw, 5.2rem);
+            line-height: 0.96;
+            letter-spacing: -0.06em;
+        }
+
+        .hero h1 .highlight {
+            color: var(--secondary);
+        }
+
+        .hero p {
+            max-width: 580px;
+            margin-top: 22px;
+            color: var(--muted);
+            font-size: 1.08rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .hero-stats {
+            margin-top: 28px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+        }
+
+        .hero-stats strong {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .hero-stats span {
+            color: var(--muted);
+            font-size: 0.84rem;
+        }
+
+        .visual-card {
+            position: relative;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 30px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+            box-shadow: var(--shadow);
+        }
+
+        .visual-screen {
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+            background:
+                linear-gradient(140deg, rgba(255, 95, 109, 0.72), rgba(255,195,113,0.2)),
+                url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+            min-height: 540px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .play-badge {
+            position: absolute;
+            left: 28px;
+            bottom: 28px;
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(13, 13, 18, 0.45);
+            display: grid;
+            place-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .play-badge::before {
+            content: "";
+            margin-left: 6px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 16px solid #fff;
+        }
+
+        .floating-card {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            width: 220px;
+            padding: 20px;
+            border-radius: 22px;
+            background: rgba(13,13,18,0.78);
+            border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(12px);
+        }
+
+        .floating-card .label {
+            color: var(--muted);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .floating-card strong {
+            display: block;
+            margin-top: 10px;
+            font-size: 2rem;
+        }
+
+        .floating-card small {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        section {
+            padding: 56px 0;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 28px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: -0.05em;
+        }
+
+        .section-heading p {
+            max-width: 520px;
+            color: var(--muted);
+        }
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .about-card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            padding: 28px;
+        }
+
+        .about-card p {
+            color: var(--muted);
+            margin-top: 14px;
+        }
+
+        .about-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 30px;
+        }
+
+        .metric {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 22px 18px;
+        }
+
+        .metric strong {
+            font-size: 2rem;
+            display: block;
+        }
+
+        .metric span {
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        .services-grid,
+        .portfolio-grid,
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .service,
+        .project,
+        .testimonial {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 26px;
+            padding: 28px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .service:hover,
+        .project:hover,
+        .testimonial:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 195, 113, 0.35);
+        }
+
+        .icon {
+            width: 54px;
+            height: 54px;
+            display: grid;
+            place-items: center;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(255,95,109,0.2), rgba(255,195,113,0.2));
+            font-size: 1.5rem;
+            margin-bottom: 18px;
+        }
+
+        .service h3,
+        .project h3,
+        .testimonial h3 {
+            font-size: 1.35rem;
+            margin-bottom: 10px;
+        }
+
+        .service p,
+        .project p,
+        .testimonial p {
+            color: var(--muted);
+        }
+
+        .project {
+            display: block;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .project-link {
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .project-link:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 195, 113, 0.35);
+            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        .project-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-content {
+            padding: 24px 22px 26px;
+        }
+
+        .portfolio-actions {
+            margin-top: 28px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .project-tag {
+            display: inline-block;
+            padding: 0.45rem 0.7rem;
+            border-radius: 999px;
+            background: rgba(255,195,113,0.12);
+            color: var(--secondary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .process {
+            background: rgba(255,255,255,0.02);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .step {
+            position: relative;
+            padding: 28px 22px;
+            border-radius: 22px;
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .step-number {
+            font-size: 2.5rem;
+            color: rgba(255,255,255,0.18);
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .step h3 {
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color: var(--muted);
+        }
+
+        .cta {
+            padding: 72px 0 80px;
+        }
+
+        .cta-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+            background: linear-gradient(135deg, rgba(255,95,109,0.12), rgba(255,195,113,0.09));
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 30px;
+            padding: 34px 38px;
+        }
+
+        .cta-box h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: -0.06em;
+        }
+
+        .cta-box p {
+            color: var(--muted);
+            margin-top: 8px;
+        }
+
+        footer {
+            padding: 24px 0 50px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+        }
+
+        .footer-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid,
+            .about,
+            .services-grid,
+            .portfolio-grid,
+            .testimonials-grid,
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-heading,
+            .cta-box,
+            .footer-wrap {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .hero {
+                padding-top: 42px;
+            }
+
+            .visual-screen {
+                min-height: 420px;
+            }
+
+            .floating-card {
+                width: 180px;
+            }
+
+            .hero-stats,
+            .about-metrics {
+                grid-template-columns: 1fr;
+                display: grid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="container nav">
+            <a href="#top" class="brand">Nova<span>Frame</span></a>
+            <nav class="nav-links" aria-label="Menu principal">
+                <a href="#sobre">Sobre</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#projetos">Projetos</a>
+                <a href="#processo">Processo</a>
+                <a href="#contato">Contato</a>
+            </nav>
+            <a href="#contato" class="btn btn-primary">Solicitar orçamento</a>
+        </div>
+    </header>
+
+    <main id="top">
+        <section class="hero">
+            <div class="container hero-grid">
+                <div>
+                    <div class="eyebrow">Produção audiovisual completa</div>
+                    <h1>Conte a sua história <span class="highlight">com impacto.</span></h1>
+                    <p>
+                        A NovaFrame transforma ideias em experiências visuais memoráveis para marcas, artistas e negócios que querem se destacar no mercado.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#contato" class="btn btn-primary">Fale com a gente</a>
+                        <a href="#projetos" class="btn btn-secondary">Ver projetos</a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div>
+                            <strong>180+</strong>
+                            <span>projetos entregues</span>
+                        </div>
+                        <div>
+                            <strong>8 anos</strong>
+                            <span>de experiência</span>
+                        </div>
+                        <div>
+                            <strong>4,9/5</strong>
+                            <span>avaliação média</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="visual-card">
+                    <div class="visual-screen">
+                        <div class="floating-card">
+                            <div class="label">Campanha</div>
+                            <strong>+146%</strong>
+                            <small>engajamento</small>
+                        </div>
+                        <div class="play-badge" aria-label="Assistir vídeo destaque"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Quem somos</h2>
+                    <p>Uma produtora de conteúdo com olhar estratégico, técnico e criativo para gerar resultados visuais reais.</p>
+                </div>
+
+                <div class="about">
+                    <div class="about-card">
+                        <div class="eyebrow">Nossa missão</div>
+                        <p>
+                            A NovaFrame nasceu para conectar marcas e histórias por meio de imagens que geram emoção, autoridade e presença digital.
+                            Trabalhamos com direção de arte, produção, captação, edição e pós-produção para entregar peças com clareza e identidade forte.
+                        </p>
+                    </div>
+
+                    <div class="about-metrics">
+                        <div class="metric">
+                            <strong>12</strong>
+                            <span>especialistas</span>
+                        </div>
+                        <div class="metric">
+                            <strong>350+</strong>
+                            <span>filmagens</span>
+                        </div>
+                        <div class="metric">
+                            <strong>24h</strong>
+                            <span>prazo para proposta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicos">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Serviços</h2>
+                    <p>Do conceito à entrega final, cuidamos de cada detalhe para que sua mensagem brilhe com qualidade.</p>
+                </div>
+
+                <div class="services-grid">
+                    <article class="service">
+                        <div class="icon">🎬</div>
+                        <h3>Produção de vídeos</h3>
+                        <p>Criação de vídeos institucionais, comerciais e de lançamento com direção, captação e equipe completa.</p>
+                    </article>
+                    <article class="service">
+                        <div class="icon">✨</div>
+                        <h3>Direção criativa</h3>
+                        <p>Estratégia visual, roteiro, storyboard e conceituação para comunicação poderosa e alinhada à sua marca.</p>
+                    </article>
+                    <article class="service">
+                        <div class="icon">🎧</div>
+                        <h3>Pós-produção</h3>
+                        <p>Edição, motion graphics, color grading e acabamento final com refinamento técnico e visual premium.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="projetos">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Projetos em destaque</h2>
+                    <p>Trabalhamos com marcas que querem comunicar com autenticidade e impacto visual.</p>
+                </div>
+
+                <div class="portfolio-grid">
+                    <a href="projetos.html" class="project project-link">
+                        <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80');"></div>
+                        <div class="project-content">
+                            <span class="project-tag">Campanha</span>
+                            <h3>Brand Film</h3>
+                            <p>Vídeo institucional com narrativa forte para posicionamento de marca em campanha nacional.</p>
+                        </div>
+                    </a>
+
+                    <a href="projetos.html" class="project project-link">
+                        <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=900&q=80');"></div>
+                        <div class="project-content">
+                            <span class="project-tag">Produtos</span>
+                            <h3>Launch Visual</h3>
+                            <p>Produção para lançamento de produto com estética premium e foco em conversão.</p>
+                        </div>
+                    </a>
+
+                    <a href="projetos.html" class="project project-link">
+                        <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80');"></div>
+                        <div class="project-content">
+                            <span class="project-tag">Digital</span>
+                            <h3>Conteúdo para redes</h3>
+                            <p>Séries curtas e reels desenvolvidos para aumentar alcance, visibilidade e engajamento.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="portfolio-actions">
+                    <a href="projetos.html" class="btn btn-primary">Ver todos os projetos</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="process" id="processo">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Como trabalhamos</h2>
+                    <p>Um processo claro e eficiente pensado para facilitar a criação sem perder a qualidade.</p>
+                </div>
+
+                <div class="process-grid">
+                    <div class="step">
+                        <div class="step-number">01</div>
+                        <h3>Diagnóstico</h3>
+                        <p>Entendemos sua marca, seu público e seus objetivos para dar o rumo certo ao projeto.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">02</div>
+                        <h3>Conceito</h3>
+                        <p>Desenvolvemos a proposta visual, narrativa e estratégia criativa a partir do briefing.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">03</div>
+                        <h3>Produção</h3>
+                        <p>Capturamos, dirijimos e organizamos tudo com equipe técnica especializada e logística eficiente.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">04</div>
+                        <h3>Entrega</h3>
+                        <p>Finalizamos com edição, refinamento e entregas prontas para uso em campanhas e redes sociais.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Clientes que confiam</h2>
+                    <p>Parcerias que cresceram com conteúdo estratégico, criativo e de alto impacto.</p>
+                </div>
+
+                <div class="testimonials-grid">
+                    <article class="testimonial">
+                        <h3>Marina Costa</h3>
+                        <p>“A equipe trouxe clareza, estética e muita estratégia. Nossa campanha ficou muito mais forte após o desenvolvimento do vídeo.”</p>
+                    </article>
+                    <article class="testimonial">
+                        <h3>Lucas Mendes</h3>
+                        <p>“Profissionalismo em todos os momentos. A produção superou as expectativas e entregou um material premium.”</p>
+                    </article>
+                    <article class="testimonial">
+                        <h3>Fernanda Rocha</h3>
+                        <p>“Ficamos impressionados com a organização, criatividade e resultado final. Recomendamos sem hesitar.”</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta" id="contato">
+            <div class="container">
+                <div class="cta-box">
+                    <div>
+                        <div class="eyebrow">Vamos criar algo incrível</div>
+                        <h2>Seu próximo projeto começa aqui.</h2>
+                        <p>Conte-nos sua ideia e desenvolveremos uma solução visual que conecta sua marca ao público certo.</p>
+                    </div>
+                    <a href="mailto:contato@novaframe.com.br" class="btn btn-primary">contato@novaframe.com.br</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-wrap">
+            <div class="brand">Nova<span>Frame</span></div>
+            <div>© <span id="year"></span> NovaFrame Produções</div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

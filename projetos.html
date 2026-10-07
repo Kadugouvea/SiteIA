@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos | NovaFrame Produções</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        :root {
+            --bg: #0d0d12;
+            --bg-soft: #171821;
+            --card: rgba(255, 255, 255, 0.04);
+            --card-strong: #1b1b25;
+            --primary: #ff5f6d;
+            --secondary: #ffc371;
+            --text: #f5f7fb;
+            --muted: #a7adbf;
+            --line: rgba(255,255,255,0.08);
+            --shadow: 0 20px 60px rgba(0,0,0,0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(255, 95, 109, 0.18), transparent 28%),
+                radial-gradient(circle at bottom right, rgba(255,195,113,0.12), transparent 22%),
+                var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(16px);
+            background: rgba(13, 13, 18, 0.72);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 78px;
+        }
+
+        .brand {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .brand span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            color: var(--muted);
+            font-size: 0.96rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            padding: 0.95rem 1.6rem;
+            font-weight: 700;
+            transition: transform 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #ff7d60);
+            color: white;
+            box-shadow: 0 16px 38px rgba(255, 95, 109, 0.35);
+        }
+
+        .hero {
+            padding: 72px 0 36px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.5rem 0.9rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            color: var(--secondary);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            letter-spacing: -0.06em;
+        }
+
+        .subtitle {
+            margin-top: 18px;
+            max-width: 700px;
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+            padding: 40px 0 80px;
+        }
+
+        .project-card {
+            display: block;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 26px;
+            overflow: hidden;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 195, 113, 0.35);
+            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        .project-image {
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-content {
+            padding: 24px 22px 28px;
+        }
+
+        .project-tag {
+            display: inline-block;
+            padding: 0.45rem 0.7rem;
+            border-radius: 999px;
+            background: rgba(255,195,113,0.12);
+            color: var(--secondary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .project-content p {
+            color: var(--muted);
+        }
+
+        footer {
+            padding: 24px 0 50px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+        }
+
+        .footer-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="container nav">
+            <a href="index.html" class="brand">Nova<span>Frame</span></a>
+            <nav class="nav-links" aria-label="Menu principal">
+                <a href="index.html#sobre">Sobre</a>
+                <a href="index.html#servicos">Serviços</a>
+                <a href="projetos.html">Projetos</a>
+                <a href="index.html#processo">Processo</a>
+                <a href="index.html#contato">Contato</a>
+            </nav>
+            <a href="index.html#contato" class="btn btn-primary">Solicitar orçamento</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="eyebrow">Portfolio</div>
+                <h1>Projetos que <span style="color: var(--secondary);">transformam marcas</span></h1>
+                <p class="subtitle">Uma seleção dos trabalhos que desenvolvemos para marcas, produtos e campanhas que querem comunicar com clareza, presença e impacto visual.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="projects-grid">
+                    <a href="brand-film.html" class="project-card">
+                        <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80');"></div>
+                        <div class="project-content">
+                            <span class="project-tag">Campanha</span>
+                            <h3>Brand Film</h3>
+                            <p>Vídeo institucional com narrativa emocional e estética premium para fortalecer a identidade da marca.</p>
+                        </div>
+                    </a>
+
+                    <a href="launch-visual.html" class="project-card">
+                        <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=900&q=80');"></div>
+                        <div class="project-content">
+                            <span class="project-tag">Produto</span>
+                            <h3>Launch Visual</h3>
+                            <p>Estratégia de lançamento para apresentar um produto com foco em diferenciação e alta conversão.</p>
+                        </div>
+                    </a>
+
+                    <a href="conteudo-redes.html" class="project-card">
+                        <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80');"></div>
+                        <div class="project-content">
+                            <span class="project-tag">Digital</span>
+                            <h3>Conteúdo para redes</h3>
+                            <p>Séries curtas e peças para redes sociais pensadas para aumentar alcance e engajamento.</p>
+                        </div>
+                    </a>
+
+                    <a href="recap-evento.html" class="project-card">
+                        <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80');"></div>
+                        <div class="project-content">
+                            <span class="project-tag">Eventos</span>
+                            <h3>Recap de evento</h3>
+                            <p>Montagem de highlights com ritmo, emoção e narrativa para fortalecer a presença do evento após o dia do show.</p>
+                        </div>
+                    </a>
+
+                    <a href="video-institucional.html" class="project-card">
+                        <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80');"></div>
+                        <div class="project-content">
+                            <span class="project-tag">Corporate</span>
+                            <h3>Vídeo institucional</h3>
+                            <p>Produção de comunicação interna e externa para mostrar cultura, propósito e posicionamento da empresa.</p>
+                        </div>
+                    </a>
+
+                    <a href="campanha-digital.html" class="project-card">
+                        <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80');"></div>
+                        <div class="project-content">
+                            <span class="project-tag">Publicidade</span>
+                            <h3>Campanha digital</h3>
+                            <p>Criação de peças para mídia digital com foco em performance, criatividade e conversão.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-wrap">
+            <div class="brand">Nova<span>Frame</span></div>
+            <div>© 2026 NovaFrame Produções</div>
+        </div>
+    </footer>
+</body>
+</html>
